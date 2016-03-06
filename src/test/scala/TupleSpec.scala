@@ -18,4 +18,14 @@ class TupleSpec extends FlatSpec with Matchers {
     tuple._3 shouldEqual Array()
   }
 
+  it should "allow to dereference variables" in {
+    val tuple = ("a", 10 , Array())
+
+    val (a, integer, array) = tuple
+
+    a shouldEqual "a"
+    integer shouldEqual 10
+    array shouldEqual Array()
+  }
+
 }
