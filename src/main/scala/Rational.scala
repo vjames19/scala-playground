@@ -17,16 +17,11 @@ class Rational(numerator: Int, denominator: Int) {
       num * that.denom + that.num * denom,
       denom * that.denom)
 
-  def +(i: Int): Rational = this.+(new Rational(i))
-
   def -(that: Rational): Rational = this.+(new Rational(-that.num, that.denom))
-
-  def -(i: Int): Rational = this.-(new Rational(i))
 
   def *(that: Rational): Rational = new Rational(num * that.num, denom * that.denom)
 
-  def *(i: Int): Rational = this.*(new Rational(i))
-
+  def /(that: Rational): Rational = this.*(new Rational(that.denom, that.num))
 
   private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
 
@@ -43,4 +38,9 @@ class Rational(numerator: Int, denominator: Int) {
     val state = Seq(num, denom)
     state.map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
   }
+}
+
+object Rational {
+  // With this the compiler with implicitly convert an integer to a rational number
+  implicit def intToRational(x: Int): Rational = new Rational(x)
 }

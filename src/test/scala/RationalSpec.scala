@@ -40,6 +40,7 @@ class RationalSpec extends FlatSpec with Matchers {
 
   it should "substract" in {
     new Rational(1, 2) - new Rational(1) shouldEqual new Rational(-1, 2)
+    2 - new Rational(1, 2) shouldEqual new Rational(3, 2)
   }
 
   it should "multiply" in {
@@ -48,6 +49,12 @@ class RationalSpec extends FlatSpec with Matchers {
 
   it should "multiply another integer" in {
     new Rational(10, 2) * 2 shouldEqual new Rational(10)
+
+    2 * new Rational(10, 2) shouldEqual new Rational(10)
+  }
+
+  it should "divide" in {
+    new Rational(10, 2) / new Rational(1, 2) shouldEqual (new Rational(10))
   }
 
   it should "follow operator precedence" in {
